@@ -1,6 +1,8 @@
 {
   "version": 2,
   "builds": [
+    { "src": "build/static/css/main.65027555.css", "use": "@now/static" },
+    { "src": "/static/js/main.bcbddcc0.js", "use": "@now/node" },
     { "src": "build/index.html", "use": "@now/static" }
   ]
 }
