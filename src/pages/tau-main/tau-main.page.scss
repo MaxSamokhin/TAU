@@ -1,0 +1,13 @@
+.tau {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  &__block {
+    display: flex;
+    height: 100%;
+    flex-flow: wrap;
+    justify-content: space-around;
+    align-items: center;
+  }
+}

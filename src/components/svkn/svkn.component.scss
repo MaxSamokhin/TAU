@@ -1,0 +1,41 @@
+.svkn {
+  &__form {
+    &-item {
+      &-line {
+        & .ant-form-item-control-wrapper {
+          width: 100%;
+        }
+
+        & .ant-select-selection {
+          width: 256px;
+        }
+
+        & #coordinated_impactCharacteristic {
+          margin: 0 40px 0 10px;
+          min-width: 100px;
+        }
+      }
+    }
+  }
+}
+
+label {
+  white-space: normal;
+  display: inline-block;
+  line-height: 20px;
+  margin-right: 15px;
+}
+
+.ant-form-item-children {
+  display: flex;
+}
+
+@media (max-width: 500px) {
+  .ant-form-item-children {
+    display: inline-block;
+  }
+
+  .svkn__form-item-line #coordinated_impactCharacteristic {
+    margin: 0;
+  }
+}
