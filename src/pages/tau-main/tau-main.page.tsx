@@ -5,6 +5,7 @@ import PvoComponent from './../../components/pvo/pvo.component';
 import SvknComponent from '../../components/svkn/svkn.component';
 import { Card} from 'antd';
 import { Button, notification  } from 'antd';
+import Calculation from "../../helpers/calculation";
 
 class TauMainPage extends React.Component<any, any> {
     constructor(props: any) {
@@ -28,7 +29,7 @@ class TauMainPage extends React.Component<any, any> {
                 </Card>
 
                 <Card className={'tau__pvo'}
-                      title="Список целевых каналов"
+                      title="Список целевых каналов системы ПВО"
                       hoverable={true}
                       style={{ width: 350, margin: '10px'}}>
                     {
@@ -55,8 +56,11 @@ class TauMainPage extends React.Component<any, any> {
             });
         }
 
-        console.log(svkn);
-        console.log(pvo);
+        const calculation = new Calculation();
+        calculation.pvo = pvo;
+        calculation.svkn = svkn;
+
+        console.log(calculation.getResult());
     }
 }
 

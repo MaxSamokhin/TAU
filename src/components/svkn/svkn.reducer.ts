@@ -9,25 +9,25 @@ const initialState = {
             impactCharacteristic: "",
             select: "duration",
             type: ""
-        }
-        // {
-        //     id: "_asdas",
-        //     airImpactIntensity: "12",
-        //     approachTime: "12",
-        //     dodgeIndex: "12",
-        //     impactCharacteristic: "23",
-        //     select: "duration",
-        //     type: "тип2"
-        // },
-        // {
-        //     id: "_qweqwe",
-        //     airImpactIntensity: "12",
-        //     approachTime: "12",
-        //     dodgeIndex: "12",
-        //     impactCharacteristic: "23",
-        //     select: "duration",
-        //     type: "тип1"
-        // },
+        },
+        {
+            id: "_qweqwe",
+            airImpactIntensity: "10",
+            approachTime: "20",
+            dodgeIndex: "1.4",
+            impactCharacteristic: "110",
+            select: "count",
+            type: "svkn 2"
+        },
+        {
+            id: "_qwqeqwe",
+            airImpactIntensity: "10",
+            approachTime: "20",
+            dodgeIndex: "1.4",
+            impactCharacteristic: "110",
+            select: "count",
+            type: "svkn 1"
+        },
     ],
 };
 
