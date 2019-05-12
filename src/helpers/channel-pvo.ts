@@ -27,7 +27,12 @@ export default class ChannelPvo {
     }
 
     public shot() {
-        this.ammunition -= this.numberMissiles;
+        if (this.ammunition <= 1) {
+            this.ammunition = 0;
+        } else {
+            this.ammunition -= this.numberMissiles;
+        }
+
         this.releaseTime += this.minTimeService+(Math.random()*(this.maxTimeService-this.minTimeService)); //пересчет времени освобождения
         return this.accuracyIndex;
     }
