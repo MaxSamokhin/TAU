@@ -37,18 +37,13 @@ export default class Calculation {
         this.efficiencySortingPvo();
         this.startQueuingSystem();
 
-
-        console.dir(this.pvo);
-        console.dir(this.svkn);
-
-        console.log('уничтоженных СВКН', this.numberOfDestroyedAircrafts);
-        console.log('всего ракет у противника', this.numberOfAircrafts);
-        console.log('показателя боевой эффективности', this.indexOfCombatEffectiveness);
-        console.log('resultForSvkn');
-        console.dir(this.resultForSvkn);
-
-
-        return `Результат ${this.pvo} ${this.svkn}`;
+        return {
+            numberOfAircrafts: this.numberOfAircrafts,
+            numberOfDestroyedAircrafts: this.numberOfDestroyedAircrafts,
+            indexOfCombatEffectiveness: this.indexOfCombatEffectiveness,
+            svknInfo: [...this.svkn],
+            resultForSvkn: this.resultForSvkn
+        };
     }
 
     private startQueuingSystem() {
@@ -80,11 +75,12 @@ export default class Calculation {
         // массив времен входа на текущей итерации
         let currentInputTimes: Array<number> = [];
 
-        console.log(this.numberOfAircrafts);
-
         for (let i = 0; i < this.numberOfAircrafts; i++) {
             //находим, из какого потока будет очередной СВКН
             //сначала выпишем все возможные времена входа из всех потоков в массив
+
+            currentInputTimes = [];
+
             this.svkn.forEach((svkn: StreamAttack) => {
                 if (svkn.pointer < svkn.timelineOfAirAttack.length) {
                     currentPointer = svkn.pointer;
@@ -125,14 +121,14 @@ export default class Calculation {
             do {
                 // целевой канал, способный стрелять, но не в момент входа свкн в зону поражения,
                 // а уже в момент подлета
-                if ((numberOfCurrentChannel == -1)||(flagOfRepeat=true)) {
+                if ((numberOfCurrentChannel == -1) || (flagOfRepeat = true)) {
                     timeOfBeginningShoot = Number.MAX_VALUE;
                     this.pvo.forEach((pvo: ChannelPvo, index: number) => {
                         currentNumberMissiles = pvo.numberMissiles; // сколькими ракетами стреляем сразу
                         currentAmmunition = pvo.ammunition; // боезапас
                         currentReleaseTime = pvo.releaseTime; // время освобожденя канала
 
-                        if(currentAmmunition >= currentNumberMissiles && timeOfBeginningShoot > currentReleaseTime) {
+                        if (currentAmmunition >= currentNumberMissiles && timeOfBeginningShoot > currentReleaseTime) {
                             numberOfCurrentChannel = index;
                             timeOfBeginningShoot = currentReleaseTime
                         }
@@ -145,7 +141,7 @@ export default class Calculation {
                     this.svkn[numberOfCurrentStream].incMissedAircraft();
                     this.resultForSvkn.push(`СВКН ${(i + 1)} :пропущен из-за нехватки боезапаса`);
 
-                    flagOfRepeat=false;
+                    flagOfRepeat = false;
                 } else { //канал назначен
                     //проверяем, успеем ли мы выстрелить
 
@@ -155,7 +151,7 @@ export default class Calculation {
                         this.svkn[numberOfCurrentStream].incMissedAircraft();
                         this.resultForSvkn.push(`СВКН ${(i + 1)} :пропущен из-за нехватки боезапаса`);
 
-                        flagOfRepeat=false;
+                        flagOfRepeat = false;
                     } else {  //стреляем по СВКН
                         currentDodgeIndex = this.svkn[numberOfCurrentStream].dodgeIndex;
                         currentPrecisionIndex = this.pvo[numberOfCurrentChannel].shot(); //пересчет боезапаса, времени освобождения
@@ -171,11 +167,11 @@ export default class Calculation {
                             this.svkn[numberOfCurrentStream].incDestroyedAircraft();
                             this.numberOfDestroyedAircrafts++;
                             this.resultForSvkn.push(`СВКН ${(i + 1)} :сбит`);
-                            flagOfRepeat=false;
+                            flagOfRepeat = false;
                         } else { //промах
 
                             this.resultForSvkn.push(`СВКН ${(i + 1)} :промах, попытка повторного выстрела`);
-                            flagOfRepeat=true;
+                            flagOfRepeat = true;
                         }
                     }
                 }
@@ -184,11 +180,11 @@ export default class Calculation {
             //увеличение  указателя в рассматриваемом потоке
             this.svkn[numberOfCurrentStream].incPointer();
             //канал для следующего СВКН не назначен
-            numberOfCurrentChannel=-1;
+            numberOfCurrentChannel = -1;
         }
 
         //подсчет показателя боевой эффективности
-        this.indexOfCombatEffectiveness = this.numberOfDestroyedAircrafts/this.numberOfAircrafts;
+        this.indexOfCombatEffectiveness = this.numberOfDestroyedAircrafts / this.numberOfAircrafts;
     }
 
     private efficiencySortingPvo() {
@@ -212,9 +208,9 @@ export default class Calculation {
             return res;
         }, 0);
 
-        this.pvo.reduce((res: Array<ChannelPvo>, elem: ChannelPvo) => {
-            elem.efficiency = {maxIndex, maxTime};
-        }, []);
+        this.pvo.forEach((_: any, index: number) => {
+            this.pvo[index].efficiency = {maxIndex, maxTime};
+        });
 
         this.pvo.sort((a: ChannelPvo, b: ChannelPvo) => b.efficiency - a.efficiency);
     }

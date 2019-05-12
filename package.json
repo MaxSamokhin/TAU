@@ -3,10 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@types/pdfmake": "^0.1.5",
     "@types/react-router-dom": "^4.3.3",
     "@types/redux-logger": "^3.0.7",
     "@types/redux-thunk": "^2.1.0",
     "antd": "^3.17.0",
+    "pdfmake": "^0.1.56",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-redux": "^7.0.3",
