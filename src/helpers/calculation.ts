@@ -121,7 +121,7 @@ export default class Calculation {
             do {
                 // целевой канал, способный стрелять, но не в момент входа свкн в зону поражения,
                 // а уже в момент подлета
-                if ((numberOfCurrentChannel == -1) || (flagOfRepeat = true)) {
+                if ((numberOfCurrentChannel === -1) || flagOfRepeat) {
                     timeOfBeginningShoot = Number.MAX_VALUE;
                     this.pvo.forEach((pvo: ChannelPvo, index: number) => {
                         currentNumberMissiles = pvo.numberMissiles; // сколькими ракетами стреляем сразу
@@ -136,7 +136,7 @@ export default class Calculation {
                 }
 
                 //если канал до сих пор не назначен, значит боеприпасов у ПВО нет даже на один выстрел, записываем пропуск
-                if (numberOfCurrentChannel == -1) {
+                if (numberOfCurrentChannel === -1) {
 
                     this.svkn[numberOfCurrentStream].incMissedAircraft();
                     this.resultForSvkn.push(`СВКН ${(i + 1)} :пропущен из-за нехватки боезапаса`);
@@ -149,7 +149,7 @@ export default class Calculation {
                     if (timeOfBeginningShoot > currentCriticalTime - currentMinimumTime) { //если условие правдиво, стрелять нет смысла
 
                         this.svkn[numberOfCurrentStream].incMissedAircraft();
-                        this.resultForSvkn.push(`СВКН ${(i + 1)} :пропущен из-за нехватки боезапаса`);
+                        this.resultForSvkn.push(`СВКН ${(i + 1)} :пропущен, не успели сбить`);
 
                         flagOfRepeat = false;
                     } else {  //стреляем по СВКН

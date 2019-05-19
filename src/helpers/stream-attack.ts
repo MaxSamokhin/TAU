@@ -117,35 +117,35 @@ export default class StreamAttack {
     }
 
     get impactCharacteristic(): number {
-        return this._impactCharacteristic;
+        return +this._impactCharacteristic;
     }
 
     set impactCharacteristic(value: number) {
-        this._impactCharacteristic = value;
+        this._impactCharacteristic = +value;
     }
 
     get dodgeIndex(): number {
-        return this._dodgeIndex;
+        return +this._dodgeIndex;
     }
 
     set dodgeIndex(value: number) {
-        this._dodgeIndex = value;
+        this._dodgeIndex = +value;
     }
 
     get approachTime(): number {
-        return this._approachTime;
+        return +this._approachTime;
     }
 
     set approachTime(value: number) {
-        this._approachTime = value;
+        this._approachTime = +value;
     }
 
     get airImpactIntensity(): number {
-        return this._airImpactIntensity;
+        return +this._airImpactIntensity;
     }
 
     set airImpactIntensity(value: number) {
-        this._airImpactIntensity = value;
+        this._airImpactIntensity = +value;
     }
 
     public incDestroyedAircraft() {

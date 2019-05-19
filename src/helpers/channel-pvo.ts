@@ -15,15 +15,15 @@ export default class ChannelPvo {
 
     constructor(value: any) {
         this.id = value.id;
-        this.accuracyIndex = value.accuracyIndex;
-        this.ammunition = value.ammunition;
-        this.allAmmunition = value.ammunition;
-        this.maxTimeService = value.maxTimeService;
-        this.minTimeService = value.minTimeService;
+        this.accuracyIndex = +value.accuracyIndex;
+        this.ammunition = +value.ammunition;
+        this.allAmmunition = +value.ammunition;
+        this.maxTimeService = +value.maxTimeService;
+        this.minTimeService = +value.minTimeService;
         this.numberMissiles = value.numberMissiles;
         this.type = value.type;
 
-        this.averageTime = (this.maxTimeService + this.minTimeService) / 2;
+        this.averageTime = (+this.maxTimeService + (+this.minTimeService)) / 2;
     }
 
     public shot() {
@@ -33,16 +33,16 @@ export default class ChannelPvo {
             this.ammunition -= this.numberMissiles;
         }
 
-        this.releaseTime += this.minTimeService+(Math.random()*(this.maxTimeService-this.minTimeService)); //пересчет времени освобождения
+        this.releaseTime += +this.minTimeService + (Math.random() * (+this.maxTimeService - (+this.minTimeService))); //пересчет времени освобождения
         return this.accuracyIndex;
     }
 
     get efficiency(): any {
-        return this._efficiency;
+        return +this._efficiency;
     }
 
     set efficiency(value: any) {
-        this._efficiency =  0.5 * (this.accuracyIndex / value.maxIndex) - 0.5 * (this.averageTime / value.maxTime);
+        this._efficiency = 0.6 * (this.accuracyIndex / +value.maxIndex) - 0.4 * (this.averageTime / +value.maxTime);
     }
 
     get type(): string {
@@ -50,11 +50,11 @@ export default class ChannelPvo {
     }
 
     get averageTime(): any {
-        return this._averageTime;
+        return +this._averageTime;
     }
 
     set averageTime(value: any) {
-        this._averageTime = value
+        this._averageTime = +value
     }
 
     set type(value: string) {
@@ -62,7 +62,7 @@ export default class ChannelPvo {
     }
 
     get numberMissiles(): any {
-        return this._numberMissiles;
+        return +this._numberMissiles;
     }
 
     set numberMissiles(value: any) {
@@ -80,35 +80,35 @@ export default class ChannelPvo {
     }
 
     get maxTimeService(): number {
-        return this._maxTimeService;
+        return +this._maxTimeService;
     }
 
     set maxTimeService(value: number) {
-        this._maxTimeService = value;
+        this._maxTimeService = +value;
     }
 
     get minTimeService(): number {
-        return this._minTimeService;
+        return +this._minTimeService;
     }
 
     set minTimeService(value: number) {
-        this._minTimeService = value;
+        this._minTimeService = +value;
     }
 
     get ammunition(): number {
-        return this._ammunition;
+        return +this._ammunition;
     }
 
     set ammunition(value: number) {
-        this._ammunition = value;
+        this._ammunition = +value;
     }
 
     set accuracyIndex(value: number) {
-        this._accuracyIndex = value;
+        this._accuracyIndex = +value;
     }
 
     get accuracyIndex(): number {
-        return this._accuracyIndex;
+        return +this._accuracyIndex;
     }
 
     get id(): string {
@@ -120,18 +120,18 @@ export default class ChannelPvo {
     }
 
     get releaseTime(): number {
-        return this._releaseTime;
+        return +this._releaseTime;
     }
 
     set releaseTime(value: number) {
-        this._releaseTime = value;
+        this._releaseTime = +value;
     }
 
     get allAmmunition(): number {
-        return this._allAmmunition;
+        return +this._allAmmunition;
     }
 
     set allAmmunition(value: number) {
-        this._allAmmunition = value;
+        this._allAmmunition = +value;
     }
 }

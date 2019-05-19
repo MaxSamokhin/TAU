@@ -12,21 +12,12 @@ const initialState = {
         },
         {
             id: "_asdas",
-            accuracyIndex: '1.1',
-            ammunition: '4',
-            maxTimeService: '5',
-            minTimeService: '1',
-            numberMissiles: 'two',
-            type: 'chanel pvo 1'
-        },
-        {
-            id: "_asqwedas",
-            accuracyIndex: '1.5',
-            ammunition: '4',
-            maxTimeService: '7',
-            minTimeService: '5',
+            accuracyIndex: '0.85',
+            ammunition: '5',
+            maxTimeService: '3',
+            minTimeService: '2',
             numberMissiles: 'one',
-            type: 'chanel pvo 2'
+            type: 'chanel pvo 1'
         }
     ],
 };

@@ -12,22 +12,13 @@ const initialState = {
         },
         {
             id: "_qweqwe",
-            airImpactIntensity: "10",
-            approachTime: "20",
-            dodgeIndex: "1.4",
-            impactCharacteristic: "110",
-            select: "count",
-            type: "svkn 2"
-        },
-        {
-            id: "_qwqeqwe",
-            airImpactIntensity: "10",
-            approachTime: "20",
-            dodgeIndex: "1.4",
-            impactCharacteristic: "110",
+            airImpactIntensity: "1",
+            approachTime: "7",
+            dodgeIndex: "0.95",
+            impactCharacteristic: "6",
             select: "count",
             type: "svkn 1"
-        },
+        }
     ],
 };
 
